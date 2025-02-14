@@ -35,4 +35,25 @@ export class LoginComponent {
       }
     });
   }
+
+  goToRegister() {
+    this.router.navigate(['/register']);
+  }
+
+  forgotPassword() {
+    // Aqui, podemos abrir um prompt ou modal solicitando o email,
+    // depois chamar o AuthService para a rota de "lembrar senha"
+    const emailRecuperacao = prompt('Informe seu email para recuperar a senha:');
+    if (!emailRecuperacao) return;
+
+    this.authService.rememberPassword(emailRecuperacao).subscribe({
+      next: (res) => {
+        // Se o backend retornar algo como { message: 'Senha enviada' }, por exemplo
+        alert(res.message);
+      },
+      error: (err) => {
+        alert(err.error.message || 'Erro ao recuperar senha');
+      }
+    });
+  }
 }

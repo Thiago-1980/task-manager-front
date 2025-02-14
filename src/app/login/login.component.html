@@ -29,5 +29,12 @@
       <button type="submit">Entrar</button>
       <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
     </form>
+
+      <!-- Botão para criar novo usuário -->
+      <button (click)="goToRegister()">Criar Novo Usuário</button>
+
+      <!-- Link ou botão para lembrar senha -->
+      <button (click)="forgotPassword()">Esqueci a Senha</button>
+
   </div>
   

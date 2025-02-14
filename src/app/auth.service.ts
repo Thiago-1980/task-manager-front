@@ -16,6 +16,14 @@ export class AuthService {
     return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password });
   }
 
+  register(email: string, password: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, { email, password });
+  }
+
+  rememberPassword(email: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.apiUrl}/forgot-password`, { email });
+  }
+
   setToken(token: string) {
     localStorage.setItem('token', token);
   }

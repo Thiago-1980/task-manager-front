@@ -1,6 +1,7 @@
-import { Routes } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
-import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { RegisterComponent } from './register/register.component';
+import { NgModule } from '@angular/core';
 
 // Exemplo, se TaskList e TaskForm são standalone, use loadComponent:
 export const routes: Routes = [
@@ -9,6 +10,7 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent
   },
+  { path: 'register', component: RegisterComponent },
   {
     path: 'tasks',
     children: [
@@ -30,3 +32,9 @@ export const routes: Routes = [
     ]
   }
 ];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {}
