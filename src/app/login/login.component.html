@@ -1,1 +1,33 @@
-<p>login works!</p>
+<div class="login-container">
+    <h2>Login</h2>
+  
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <label for="email">Email:</label>
+        <input
+          id="email"
+          [(ngModel)]="email"
+          name="email"
+          type="email"
+          placeholder="Digite seu email"
+          required
+        />
+      </div>
+  
+      <div class="form-field">
+        <label for="password">Senha:</label>
+        <input
+          id="password"
+          [(ngModel)]="password"
+          name="password"
+          type="password"
+          placeholder="Digite sua senha"
+          required
+        />
+      </div>
+  
+      <button type="submit">Entrar</button>
+      <p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>
+    </form>
+  </div>
+  
