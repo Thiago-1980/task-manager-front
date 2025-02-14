@@ -1,21 +1,13 @@
-// import { Routes } from '@angular/router';
-
-// export const routes: Routes = [
-//     {
-//       path: 'tasks',
-//       loadChildren: () => import('./tasks/tasks.module').then(m => m.TasksModule)
-//     }
-//   ];
-
-// src/app/routes.ts
 import { Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
 
+// Exemplo, se TaskList e TaskForm são standalone, use loadComponent:
 export const routes: Routes = [
   { path: '', redirectTo: 'tasks', pathMatch: 'full' },
   {
     path: 'login',
-    component: LoginComponent // ou loadComponent se for standalone
+    component: LoginComponent
   },
   {
     path: 'tasks',

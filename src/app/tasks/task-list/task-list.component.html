@@ -1,10 +1,16 @@
-<h2>Lista de Tarefas</h2>
-<button routerLink="/tasks/new">Nova Tarefa</button>
+<div class="task-list-container">
+  <h2>Lista de Tarefas</h2>
+  <button routerLink="/tasks/new" class="btn-new">Nova Tarefa</button>
 
-<ul>
-  <li *ngFor="let t of tasks">
-    {{ t.title }} ({{ t.status }})
-    <button (click)="deleteTask(t._id!)">Excluir</button>
-    <button [routerLink]="['/tasks', t._id, 'edit']">Editar</button>
-  </li>
-</ul>
+  <ul>
+    <li *ngFor="let t of tasks">
+      <span>
+        <strong>{{ t.title }}</strong> ({{ t.status }})
+      </span>
+      <span class="actions">
+        <button (click)="deleteTask(t._id!)">Excluir</button>
+        <button [routerLink]="['/tasks', t._id, 'edit']">Editar</button>
+      </span>
+    </li>
+  </ul>
+</div>

@@ -1,1 +1,37 @@
-<p>task-form works!</p>
+<div class="task-form-container">
+    <h2>{{ taskId ? 'Editar Tarefa' : 'Criar Nova Tarefa' }}</h2>
+  
+    <div class="form-field">
+      <label for="title">Título:</label>
+      <input
+        id="title"
+        [(ngModel)]="task.title"
+        placeholder="Digite o título da tarefa"
+        type="text"
+      />
+    </div>
+  
+    <div class="form-field">
+      <label for="description">Descrição:</label>
+      <textarea
+        id="description"
+        [(ngModel)]="task.description"
+        placeholder="Digite a descrição"
+      ></textarea>
+    </div>
+  
+    <div class="form-field">
+      <label for="status">Status:</label>
+      <select id="status" [(ngModel)]="task.status">
+        <option value="todo">A Fazer</option>
+        <option value="doing">Fazendo</option>
+        <option value="done">Concluído</option>
+      </select>
+    </div>
+  
+    <button (click)="onSave()">
+      {{ taskId ? 'Atualizar' : 'Salvar' }}
+    </button>
+    <button routerLink="/tasks">Cancelar</button>
+  </div>
+  
