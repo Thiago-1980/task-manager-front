@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth.service'; 
 import { Router } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
+  standalone: true,
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  imports: [
+    CommonModule,
+    FormsModule // <-- Adicione aqui
+  ]
 })
 export class RegisterComponent {
   email: string = '';
