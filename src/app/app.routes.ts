@@ -2,10 +2,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from './auth.guard';
 
 // Exemplo, se TaskList e TaskForm são standalone, use loadComponent:
 export const routes: Routes = [
-  { path: '', redirectTo: 'tasks', pathMatch: 'full' },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent
@@ -29,7 +30,8 @@ export const routes: Routes = [
         loadComponent: () => import('./tasks/task-form/task-form.component')
           .then(m => m.TaskFormComponent)
       }
-    ]
+    ],
+    canActivate: [AuthGuard] // proteção do login
   }
 ];
 

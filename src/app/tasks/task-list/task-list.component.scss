@@ -19,6 +19,20 @@
         background-color: #0a6d0a;
       }
     }
+
+    /* Adicione esta classe para o botão de logout */
+    .btn-logout {
+      background-color: #f44336; /* Vermelho */
+      color: #fff;              /* Letra branca */
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-bottom: 12px; /* se quiser espaçamento, por exemplo */
+      &:hover {
+        background-color: #d32f2f; /* tom de vermelho mais escuro no hover */
+      }
+    }
   
     ul {
       list-style: none;

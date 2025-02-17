@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -17,14 +18,14 @@ export class LoginComponent {
   password = '';
   errorMessage = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private http: HttpClient) {}
 
   onSubmit() {
     this.errorMessage = '';
     this.authService.login(this.email, this.password).subscribe({
       next: (res) => {
         // Ao logar com sucesso, salvamos o token
-        this.authService.setToken(res.token);
+        localStorage.setItem('token', res.token);
         // Redireciona para as tarefas
         this.router.navigate(['/tasks']);
       },

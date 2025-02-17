@@ -1,11 +1,17 @@
 <div class="task-list-container">
-  <h2>Lista de Tarefas</h2>
+  <!-- Cabeçalho da lista -->
+  <div class="header">
+    <h2>Lista de Tarefas</h2>
+  </div>
+
+  <!-- Botão de criar nova tarefa -->
   <button routerLink="/tasks/new" class="btn-new">Nova Tarefa</button>
 
+  <!-- Lista de tarefas -->
   <ul>
     <li *ngFor="let t of tasks">
       <span>
-        <strong>{{ t.title }}</strong> ({{ t.status }})
+        <strong>{{ t.title }}</strong> ({{ getStatusLabel(t.status) }})
       </span>
       <span class="actions">
         <button (click)="deleteTask(t._id!)">Excluir</button>
@@ -13,4 +19,9 @@
       </span>
     </li>
   </ul>
+
+  <div>
+    <!-- Botão de logout -->
+    <button class="btn-logout" (click)="logout()">Logout Sistema</button>
+  </div>
 </div>

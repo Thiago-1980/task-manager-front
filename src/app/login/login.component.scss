@@ -1,57 +1,91 @@
 .login-container {
-    max-width: 400px;
-    margin: 40px auto;
-    padding: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #fefefe;
-  
-    h2 {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-  
-    .form-field {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 12px;
-  
-      label {
-        font-weight: bold;
-        margin-bottom: 4px;
-      }
-  
-      input {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        outline: none;
-  
-        &:focus {
-          border-color: #1976d2;
-        }
-      }
-    }
-  
-    button {
-      margin-top: 8px;
-      padding: 8px 16px;
-      border: none;
-      border-radius: 4px;
-      background-color: #1976d2;
-      color: #fff;
-      cursor: pointer;
-  
-      &:hover {
-        background-color: #1565c0;
-      }
-    }
-  
-    .error {
-      margin-top: 8px;
-      color: #f44336;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fefefe;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+
+    label {
       font-weight: bold;
-      text-align: center;
+      margin-bottom: 4px;
+    }
+
+    input {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+
+      &:focus {
+        border-color: #1976d2;
+      }
     }
   }
-  
+
+  button {
+    margin-top: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  // Botão de login (mantendo o azul)
+  button[type="submit"] {
+    background-color: #1976d2;
+    color: #fff;
+
+    &:hover {
+      background-color: #1565c0;
+    }
+  }
+
+  // Alinhamento dos botões extras
+  .button-group {
+    display: flex;
+    justify-content: space-between; /* Um botão na esquerda, outro na direita */
+    margin-top: 12px;
+  }
+
+  // Botão "Criar Novo Usuário" (Verde)
+  .btn-register {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+
+    &:hover {
+      background-color: #388E3C;
+    }
+  }
+
+  // Botão "Esqueci a Senha" (Amarelo)
+  .btn-forgot {
+    background-color: #FFC107; /* Amarelo */
+    color: black;
+
+    &:hover {
+      background-color: #FFA000;
+    }
+  }
+
+  .error {
+    margin-top: 8px;
+    color: #f44336;
+    font-weight: bold;
+    text-align: center;
+  }
+}

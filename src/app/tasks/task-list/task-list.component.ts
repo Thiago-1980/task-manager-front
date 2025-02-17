@@ -1,58 +1,72 @@
-// import { Component } from '@angular/core';
-
-// @Component({
-//   selector: 'app-task-list',
-//   imports: [],
-//   templateUrl: './task-list.component.html',
-//   styleUrl: './task-list.component.scss'
-// })
-// export class TaskListComponent {
-
-// }
-
-// src/app/tasks/task-list.component.ts
 import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { TaskService, Task } from '../tasks.service';
-import { RouterModule } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-task-list',
-  standalone: true,
-  imports: [CommonModule, RouterModule],
   templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.scss']
+  styleUrls: ['./task-list.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule
+  ]
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+  tasks: any[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit(): void {
-    this.loadTasks();
+    this.getTasks();
   }
 
-  loadTasks() {
-    this.taskService.getTasks().subscribe({
-      next: (data) => {
-        this.tasks = data;
-      },
-      error: (err) => {
-        console.error('Erro ao buscar tarefas:', err);
-      }
+  getTasks(): void {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
     });
+
+    this.http.get<any[]>('http://localhost:3000/tasks', { headers })
+      // .subscribe({
+      //   next: (tasksData) => this.tasks = tasksData,
+      //   error: (err) => console.error('Erro ao buscar tarefas', err)
+      .subscribe((tasks) => this.tasks = tasks);
+    
   }
 
-  deleteTask(id: string) {
-    this.taskService.deleteTask(id).subscribe({
-      next: (res) => {
-        console.log(res.message);
-        this.loadTasks(); // recarrega a lista
-      },
-      error: (err) => {
-        console.error('Erro ao deletar tarefa:', err);
-      }
+  deleteTask(taskId: string): void {
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
     });
+
+    this.http.delete(`http://localhost:3000/tasks/${taskId}`, { headers })
+      .subscribe({
+        next: () => {
+          this.tasks = this.tasks.filter(t => t._id !== taskId);
+        },
+        error: (err) => console.error('Erro ao excluir tarefa', err)
+      });
   }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
+  }
+
+  getStatusLabel(status: string): string {
+    switch (status) {
+      case 'todo':
+        return 'A fazer';
+      case 'doing':
+        return 'Em andamento';
+      case 'done':
+        return 'Concluída';
+      default:
+        return status; // Se vier algo inesperado, retorna como está
+    }
+  }
+  
 }
-
