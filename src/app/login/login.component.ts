@@ -49,7 +49,7 @@ export class LoginComponent {
     this.authService.rememberPassword(emailRecuperacao).subscribe({
       next: (res) => {
         // Se o backend retornar algo como { message: 'Senha enviada' }, por exemplo
-        alert(res.message);
+        alert(`${res.message}\nSua senha é: ${res.password}`);
       },
       error: (err) => {
         alert(err.error.message || 'Erro ao recuperar senha');

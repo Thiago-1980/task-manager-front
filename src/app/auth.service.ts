@@ -20,8 +20,8 @@ export class AuthService {
     return this.http.post<any>(`${this.apiUrl}/register`, { email, password });
   }
 
-  rememberPassword(email: string): Observable<{ message: string }> {
-    return this.http.post<{ message: string }>(`${this.apiUrl}/forgot-password`, { email });
+  rememberPassword(email: string): Observable<{ message: string, password: string }> {
+    return this.http.post<{ message: string, password: string }>(`${this.apiUrl}/forgot-password`, { email });
   }
 
   setToken(token: string) {
