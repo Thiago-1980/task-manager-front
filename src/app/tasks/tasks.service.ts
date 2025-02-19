@@ -16,7 +16,7 @@ export interface Task {
 })
 
 export class TaskService {
-  private apiUrl = 'http://localhost:3000'; // ajuste conforme sua API
+  private apiUrl = 'https://task-manager-api-a5c3.onrender.com'; // ajuste conforme sua API
 
   constructor(private http: HttpClient) {}
 

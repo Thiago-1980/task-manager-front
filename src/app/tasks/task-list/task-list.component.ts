@@ -28,7 +28,7 @@ export class TaskListComponent implements OnInit {
       Authorization: `Bearer ${token}`
     });
 
-    this.http.get<any[]>('http://localhost:3000/tasks', { headers })
+    this.http.get<any[]>('https://task-manager-api-a5c3.onrender.com/tasks', { headers })
       // .subscribe({
       //   next: (tasksData) => this.tasks = tasksData,
       //   error: (err) => console.error('Erro ao buscar tarefas', err)
@@ -42,7 +42,7 @@ export class TaskListComponent implements OnInit {
       Authorization: `Bearer ${token}`
     });
 
-    this.http.delete(`http://localhost:3000/tasks/${taskId}`, { headers })
+    this.http.delete(`https://task-manager-api-a5c3.onrender.com/tasks/${taskId}`, { headers })
       .subscribe({
         next: () => {
           this.tasks = this.tasks.filter(t => t._id !== taskId);
